@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  JHOptionView
+//
+//  Created by 黄俊煌 on 2017/7/28.
+//  Copyright © 2017年 yunshi. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// 只要添加了这个宏，就不用带mas_前缀
+#define MAS_SHORTHAND3
+// 只要添加了这个宏，equalTo就等价于mas_equalTo
+#define MAS_SHORTHAND_GLOBALS
+// 这个头文件一定要放在上面两个宏的后面
+#import "Masonry.h"
+
+#define HexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define WeakSelf __weak typeof(self) weakSelf = self
+
+#endif /* PrefixHeader_pch */
