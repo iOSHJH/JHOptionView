@@ -21,7 +21,7 @@
 @property (nonatomic,strong) UIButton *cancelButton;
 /***  确认按钮*/
 @property (nonatomic,strong) UIButton *verifyButton;
-/***  分割view*/
+/***  分割线*/
 @property (nonatomic,strong)  UIView *dividerView;
 
 /***  取消block*/

@@ -42,19 +42,19 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //            [[AreaDAL sharedInstance] getAllTAreasFinished:^(NSArray *areas, NSError *error) {
-        //                dispatch_async(dispatch_get_main_queue(), ^{
-        //                    self.areas = areas;
-        //                });
-        //
-        //            }];
-        //        });
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [[AreaDAL sharedInstance] getAllTAreasFinished:^(NSArray *areas, NSError *error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.areas = areas;
+                        });
         
-        [[AreaDAL sharedInstance] getAllTAreasFinished:^(NSArray *areas, NSError *error) {
-            self.areas = areas;
-            
-        }];
+                    }];
+                });
+        
+//        [[AreaDAL sharedInstance] getAllTAreasFinished:^(NSArray *areas, NSError *error) {
+//            self.areas = areas;
+//            
+//        }];
         
         [self.containView addSubview:self.areaPicker];
         
@@ -221,7 +221,10 @@
 - (void)setFirstComponentSelectRow:(NSInteger)firstComponentSelectRow {
     _firstComponentSelectRow = firstComponentSelectRow;
     
-    NSAssert(self.firstComponentSelectRow < self.provinces.count, @"第一列没有这么多行，数组越界");
+    //NSAssert(self.firstComponentSelectRow < self.provinces.count, @"第一列没有这么多行，数组越界");
+    if (self.firstComponentSelectRow >= self.provinces.count) {
+        return;
+    }
     
     [self.areaPicker selectRow:self.firstComponentSelectRow inComponent:0 animated:YES];
     
