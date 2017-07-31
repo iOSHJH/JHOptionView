@@ -34,6 +34,7 @@
     self.datePicker.datePickerMode = mode;
     if (date) {
         self.datePicker.date = date;
+        [self birthdayPickerValueChange:self.datePicker];
     }
 }
 
