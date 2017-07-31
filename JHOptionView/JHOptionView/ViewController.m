@@ -65,6 +65,10 @@
     }else if (indexPath.row == 1) {
         [self.normalOptionView setTitle:@"请选择字母" datas:@[@"a", @"b", @"c", @"d"] selectRow:2];
         [self.normalOptionView show];
+        WeakSelf;
+        self.normalOptionView.verifyBlock = ^{
+            NSLog(@"%@ %zd",weakSelf.normalOptionView.selectTitle, weakSelf.normalOptionView.selectRow);
+        };
         
 //        [self.normalOptionView setTitle:@"请选择数字" datas:@[@"1", @"2", @"3", @"4"] selectRow:2];
 //        [self.normalOptionView show];
@@ -72,6 +76,10 @@
         NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-(10 * 365 * 24 * 60 * 60)]; // 十年前
         [self.dateOptionView setTitle:@"请选择日期" dateMode:UIDatePickerModeDate selectDate:date];
         [self.dateOptionView show];
+        WeakSelf;
+        self.dateOptionView.verifyBlock = ^{
+            NSLog(@"%@ %@ %@",weakSelf.dateOptionView.selectDate1, weakSelf.dateOptionView.selectDate2, weakSelf.dateOptionView.selectDate);
+        };
         
 //        [self.dateOptionView setTitle:@"请选择时间" dateMode:UIDatePickerModeTime selectDate:nil];
 //        [self.dateOptionView show];
@@ -82,6 +90,10 @@
         
         [self.areaOptionView setTitle:@"请选择家乡" level:AreaOptionLevelCounty firstComponentSelectRow:18];
         [self.areaOptionView show];
+        WeakSelf;
+        self.areaOptionView.verifyBlock = ^{
+            NSLog(@"%@ %@ %@",weakSelf.areaOptionView.provinceStr, weakSelf.areaOptionView.cityStr, weakSelf.areaOptionView.countyStr);
+        };
     }
 }
 
@@ -108,11 +120,6 @@
     _normalOptionView = [JHNormalOptionView new];
     _normalOptionView.frame = self.view.bounds;
     
-    WeakSelf;
-    _normalOptionView.verifyBlock = ^{
-        NSLog(@"%@ %zd",weakSelf.normalOptionView.selectTitle, weakSelf.normalOptionView.selectRow);
-    };
-    
     return _normalOptionView;
 }
 
@@ -121,22 +128,12 @@
     _dateOptionView = [JHDateOptionView new];
     _dateOptionView.frame = self.view.bounds;
     
-    WeakSelf;
-    _dateOptionView.verifyBlock = ^{
-        NSLog(@"%@ %@ %@",weakSelf.dateOptionView.selectDate1, weakSelf.dateOptionView.selectDate2, weakSelf.dateOptionView.selectDate);
-    };
-    
     return _dateOptionView;
 }
 
 - (JHAreaOptionView *)areaOptionView {
     if (_areaOptionView) return _areaOptionView;
     _areaOptionView = [[JHAreaOptionView alloc] initWithFrame:self.view.bounds];
-    
-    WeakSelf;
-    _areaOptionView.verifyBlock = ^{
-        NSLog(@"%@ %@ %@",weakSelf.areaOptionView.provinceStr, weakSelf.areaOptionView.cityStr, weakSelf.areaOptionView.countyStr);
-    };
     
     return _areaOptionView;
 }
