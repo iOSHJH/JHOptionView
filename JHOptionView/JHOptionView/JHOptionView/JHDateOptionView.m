@@ -29,9 +29,11 @@
     return self;
 }
 
-- (void)setTitle:(NSString *)title dateMode:(UIDatePickerMode)mode selectDate:(NSDate *)date {
+- (void)setTitle:(NSString *)title dateMode:(UIDatePickerMode)mode minimumDate:(NSDate *)minimumDate maximumDate:(NSDate *)maximumDate selectDate:(NSDate *)date {
     self.titleLabel.text = title;
     self.datePicker.datePickerMode = mode;
+    self.datePicker.minimumDate = minimumDate;
+    self.datePicker.maximumDate = maximumDate;
     if (date) {
         self.datePicker.date = date;
         [self birthdayPickerValueChange:self.datePicker];
@@ -58,12 +60,13 @@
         _datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
         //设置时间模式
         // _datePicker.datePickerMode = UIDatePickerModeDate;
+        
         // 设置最小时间（20年前）
-        _datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:-(40 * 365 * 24 * 60 * 60)];
+        //_datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:-(40 * 365 * 24 * 60 * 60)];
         // 设置最大时间（20年后）
-        // _datePicker = [NSDate dateWithTimeIntervalSinceNow:(20 * 365 * 24 * 60 * 6_datePicker0)];
+        // _datePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:(20 * 365 * 24 * 60 * 60)];
         // 设置最大时间 今天
-        _datePicker.maximumDate = [NSDate date];
+        //_datePicker.maximumDate = [NSDate date];
         // 设置时间间隔
         // 设置的值必须能够被60整除
         //                _birthdayPicker.minuteInterval = 60;

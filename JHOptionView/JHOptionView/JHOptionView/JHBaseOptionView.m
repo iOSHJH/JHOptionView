@@ -12,7 +12,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.4];
+        self.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.4];
 //        self.userInteractionEnabled = YES;
 //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTap)];
 //        [self addGestureRecognizer:tap];

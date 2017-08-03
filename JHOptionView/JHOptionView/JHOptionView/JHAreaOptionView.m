@@ -42,14 +42,14 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [[AreaDAL sharedInstance] getAllTAreasFinished:^(NSArray *areas, NSError *error) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            self.areas = areas;
-                        });
-        
-                    }];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [[AreaDAL sharedInstance] getAllTAreasFinished:^(NSArray *areas, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.areas = areas;
                 });
+
+            }];
+        });
         
 //        [[AreaDAL sharedInstance] getAllTAreasFinished:^(NSArray *areas, NSError *error) {
 //            self.areas = areas;

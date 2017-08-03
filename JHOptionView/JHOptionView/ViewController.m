@@ -73,8 +73,23 @@
 //        [self.normalOptionView setTitle:@"请选择数字" datas:@[@"1", @"2", @"3", @"4"] selectRow:2];
 //        [self.normalOptionView show];
     }else if (indexPath.row == 2) {
-        NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-(10 * 365 * 24 * 60 * 60)]; // 十年前
-        [self.dateOptionView setTitle:@"请选择日期" dateMode:UIDatePickerModeDate selectDate:date];
+        
+        //1、大范围用这种方式，大于 60年前或60年后
+        NSString *minStr = @"1800-01-01";
+        NSString *maxStr = @"2017-10-01";
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *minDate = [dateFormatter dateFromString:minStr];
+        NSDate *maxDate = [dateFormatter dateFromString:maxStr];
+        
+        //2、小范围可以用这种方式
+        // 设置最小时间（20年前）
+        //_datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:-(40 * 365 * 24 * 60 * 60)];
+        // 设置最大时间（20年后）
+        //_datePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:(20 * 365 * 24 * 60 * 60)];
+        
+        [self.dateOptionView setTitle:@"请选择日期" dateMode:UIDatePickerModeDate minimumDate:minDate maximumDate:maxDate selectDate:[NSDate date]];
         [self.dateOptionView show];
         WeakSelf;
         self.dateOptionView.verifyBlock = ^{
