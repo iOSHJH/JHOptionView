@@ -1,6 +1,6 @@
 # JHOptionView
 非常好用的选择器
-在开发中像填写用户资料页面，很常用到各种各样的选择器，我现在所做的项目也不另外，也有自己的一套选择器组件。
+在开发中像填写用户资料页面，很常用到各种各样的选择器，因此实现了这个灵活易用的选择器组件。
 先看看效果: 
 
 ![选择器.gif](http://upload-images.jianshu.io/upload_images/3950574-461e38346d7815a2.gif?imageMogr2/auto-orient/strip)  
